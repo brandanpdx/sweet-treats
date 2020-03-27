@@ -4,8 +4,6 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc.Rendering;
-
-//new using directives
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using System.Threading.Tasks;
@@ -13,26 +11,29 @@ using System.Security.Claims;
 
 namespace SweetTreats.Controllers
 {
-  [Authorize] 
+  // [Authorize] 
   public class FlavorsController : Controller
   {
     private readonly SweetTreatsContext _db;
     private readonly UserManager<ApplicationUser> _userManager; 
 
-    //updated constructor
+    
     public FlavorsController(UserManager<ApplicationUser> userManager, SweetTreatsContext db)
     {
       _userManager = userManager;
       _db = db;
     }
 
-    //updated Index method
-    public async Task<ActionResult> Index()
+    
+    public ActionResult Index()
     {
-      var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-      var currentUser = await _userManager.FindByIdAsync(userId);
-      var userFlavors = _db.Flavors.Where(entry => entry.User.Id == currentUser.Id);
-      return View(userFlavors);
+      List<Flavors> model = _db.Flavors.ToList();
+      return View(model);
+
+      // var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+      // var currentUser = await _userManager.FindByIdAsync(userId);
+      // var userFlavors = _db.Flavors.Where(entry => entry.User.Id == currentUser.Id);
+      // return View(userFlavors);
     }
 
     public ActionResult Create()
@@ -41,7 +42,7 @@ namespace SweetTreats.Controllers
       return View();
     }
 
-    //updated Create post method
+    
     [HttpPost]
     public async Task<ActionResult> Create(Flavors flavor, int TreatsId)
     {

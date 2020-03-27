@@ -1,0 +1,19 @@
+@{
+  Layout = "_Layout";
+}
+
+@model SweetTreats.Models.Flavors
+
+<h4>Add a new task</h4>
+
+@using (Html.BeginForm())
+{
+    @Html.LabelFor(model => model.FlavorsDescription)
+    @Html.TextBoxFor(model => model.FlavorsDescription)
+
+    @Html.Label("Select category")
+    @Html.DropDownList("TreatsFlavors")
+
+    <input type="submit" value="Add new flavor" class="btn btn-default" />
+}
+<p>@Html.ActionLink("Show all items", "Index")</p>
