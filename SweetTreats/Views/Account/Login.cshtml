@@ -1,0 +1,26 @@
+@{
+  Layout = "_Layout";
+}
+
+@using RecipeBook.ViewModels;
+@model LoginViewModel;
+<div class="row">
+  <div class="col-md-6 offset-md-3">
+    <h2 class="text-center">Log in with your account</h2>
+    <hr />
+    @using (Html.BeginForm())
+    {
+      <div class="form-group">
+        @Html.LabelFor(m => m.Email)
+        @Html.TextBoxFor(m => m.Email, new { @class="form-control", placeholder = "Name of recipe."})
+      </div>
+
+      <div class="form-group">
+        @Html.LabelFor(m => m.Password)
+        @Html.PasswordFor(m => m.Password, new { @class="form-control", placeholder = "Name of recipe."})
+      </div>
+
+        <input type="submit" value="Log in" class="btn btn-info btn-block" />
+    }
+  </div>
+</div>
