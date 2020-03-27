@@ -17,7 +17,7 @@ namespace SweetTreats.Controllers
 
     public ActionResult Index()
     {
-      List<Treat> model = _db.Treats.ToList();
+      List<Treats> model = _db.Treats.ToList();
       return View(model);
     }
 
@@ -27,7 +27,7 @@ namespace SweetTreats.Controllers
     }
 
     [HttpPost]
-    public ActionResult Create(Treat treat)
+    public ActionResult Create(Treats treat)
     {
       _db.Treats.Add(treat);
       _db.SaveChanges();
@@ -38,19 +38,19 @@ namespace SweetTreats.Controllers
     {
       var thisTreat = _db.Treats
           .Include(treat => treat.Flavors)
-          .ThenInclude(join => join.Flavor)
-          .FirstOrDefault(treat => treat.TreatId == id);
+          .ThenInclude(join => join.Flavors)
+          .FirstOrDefault(treat => treat.TreatsId == id);
       return View(thisTreat);
     }
 
     public ActionResult Edit(int id)
     {
-      var thisTreat = _db.Treats.FirstOrDefault(treat => treat.TreatId == id);
+      var thisTreat = _db.Treats.FirstOrDefault(treat => treat.TreatsId == id);
       return View(thisTreat);
     }
 
     [HttpPost]
-    public ActionResult Edit(Treat treat)
+    public ActionResult Edit(Treats treat)
     {
       _db.Entry(treat).State = EntityState.Modified;
       _db.SaveChanges();
@@ -59,14 +59,14 @@ namespace SweetTreats.Controllers
 
     public ActionResult Delete(int id)
     {
-      var thisTreat = _db.Treats.FirstOrDefault(treat => treat.TreatId == id);
+      var thisTreat = _db.Treats.FirstOrDefault(treat => treat.TreatsId == id);
       return View(thisTreat);
     }
 
     [HttpPost, ActionName("Delete")]
     public ActionResult DeleteConfirmed(int id)
     {
-      var thisTreat = _db.Treats.FirstOrDefault(treat => treat.TreatId == id);
+      var thisTreat = _db.Treats.FirstOrDefault(treat => treat.TreatsId == id);
       _db.Treats.Remove(thisTreat);
       _db.SaveChanges();
       return RedirectToAction("Index");

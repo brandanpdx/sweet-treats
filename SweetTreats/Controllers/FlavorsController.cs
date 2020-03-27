@@ -37,21 +37,21 @@ namespace SweetTreats.Controllers
 
     public ActionResult Create()
     {
-      ViewBag.TreatId = new SelectList(_db.Categories, "TreatId", "Name");
+      ViewBag.TreatsId = new SelectList(_db.Treats, "TreatsId", "Name");
       return View();
     }
 
     //updated Create post method
     [HttpPost]
-    public async Task<ActionResult> Create(Flavor flavor, int TreatId)
+    public async Task<ActionResult> Create(Flavors flavor, int TreatsId)
     {
       var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
       var currentUser = await _userManager.FindByIdAsync(userId);
       flavor.User = currentUser;
       _db.Flavors.Add(flavor);
-      if (TreatId != 0)
+      if (TreatsId != 0)
       {
-        _db.TreatFlavor.Add(new TreatFlavor() { TreatId = TreatId, FlavorId = flavor.FlavorId });
+        _db.TreatsFlavors.Add(new TreatsFlavors() { TreatsId = TreatsId, FlavorsId = flavor.FlavorsId });
       }
       _db.SaveChanges();
       return RedirectToAction("Index");
@@ -60,25 +60,25 @@ namespace SweetTreats.Controllers
     public ActionResult Details(int id)
     {
       var thisFlavor = _db.Flavors
-          .Include(flavor => flavor.Categories)
-          .ThenInclude(join => join.Treat)
-          .FirstOrDefault(flavor => flavor.FlavorId == id);
+          .Include(flavor => flavor.Treats)
+          .ThenInclude(join => join.Treats)
+          .FirstOrDefault(flavor => flavor.FlavorsId == id);
       return View(thisFlavor);
     }
 
     public ActionResult Edit(int id)
     {
-      var thisFlavor = _db.Flavors.FirstOrDefault(flavors => flavors.FlavorId == id);
-      ViewBag.TreatId = new SelectList(_db.Categories, "TreatId", "Name");
+      var thisFlavor = _db.Flavors.FirstOrDefault(flavors => flavors.FlavorsId == id);
+      ViewBag.TreatsId = new SelectList(_db.Treats, "TreatsId", "Name");
       return View(thisFlavor);
     }
 
     [HttpPost]
-    public ActionResult Edit(Flavor flavor, int TreatId)
+    public ActionResult Edit(Flavors flavor, int TreatsId)
     {
-      if (TreatId != 0)
+      if (TreatsId != 0)
       {
-        _db.TreatFlavor.Add(new TreatFlavor() { TreatId = TreatId, FlavorId = flavor.FlavorId });
+        _db.TreatsFlavors.Add(new TreatsFlavors() { TreatsId = TreatsId, FlavorsId = flavor.FlavorsId });
       }
       _db.Entry(flavor).State = EntityState.Modified;
       _db.SaveChanges();
@@ -87,17 +87,17 @@ namespace SweetTreats.Controllers
 
     public ActionResult AddTreat(int id)
     {
-      var thisFlavor = _db.Flavors.FirstOrDefault(flavors => flavors.FlavorId == id);
-      ViewBag.TreatId = new SelectList(_db.Categories, "TreatId", "Name");
+      var thisFlavor = _db.Flavors.FirstOrDefault(flavors => flavors.FlavorsId == id);
+      ViewBag.TreatsId = new SelectList(_db.Treats, "TreatsId", "Name");
       return View(thisFlavor);
     }
 
     [HttpPost]
-    public ActionResult AddTreat(Flavor flavor, int TreatId)
+    public ActionResult AddTreat(Flavors flavor, int TreatsId)
     {
-      if (TreatId != 0)
+      if (TreatsId != 0)
       {
-        _db.TreatFlavor.Add(new TreatFlavor() { TreatId = TreatId, FlavorId = flavor.FlavorId });
+        _db.TreatsFlavors.Add(new TreatsFlavors() { TreatsId = TreatsId, FlavorsId = flavor.FlavorsId });
       }
       _db.SaveChanges();
       return RedirectToAction("Index");
@@ -105,14 +105,14 @@ namespace SweetTreats.Controllers
 
     public ActionResult Delete(int id)
     {
-      var thisFlavor = _db.Flavors.FirstOrDefault(flavors => flavors.FlavorId == id);
+      var thisFlavor = _db.Flavors.FirstOrDefault(flavors => flavors.FlavorsId == id);
       return View(thisFlavor);
     }
 
     [HttpPost, ActionName("Delete")]
     public ActionResult DeleteConfirmed(int id)
     {
-      var thisFlavor = _db.Flavors.FirstOrDefault(flavors => flavors.FlavorId == id);
+      var thisFlavor = _db.Flavors.FirstOrDefault(flavors => flavors.FlavorsId == id);
       _db.Flavors.Remove(thisFlavor);
       _db.SaveChanges();
       return RedirectToAction("Index");
@@ -121,8 +121,8 @@ namespace SweetTreats.Controllers
     [HttpPost]
     public ActionResult DeleteTreat(int joinId)
     {
-      var joinEntry = _db.TreatFlavor.FirstOrDefault(entry => entry.TreatFlavorId == joinId);
-      _db.TreatFlavor.Remove(joinEntry);
+      var joinEntry = _db.TreatsFlavors.FirstOrDefault(entry => entry.TreatsFlavorsId == joinId);
+      _db.TreatsFlavors.Remove(joinEntry);
       _db.SaveChanges();
       return RedirectToAction("Index");
     }
