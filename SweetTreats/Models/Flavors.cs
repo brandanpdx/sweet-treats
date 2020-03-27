@@ -13,6 +13,6 @@ namespace SweetTreats.Models
     public string FlavorsDescription { get; set; }
     public virtual ApplicationUser User { get; set; }
 
-    public ICollection<CategoryFlavors> Categories { get; }
+    public ICollection<CategoryFlavors> Treats { get; }
   }
 }
