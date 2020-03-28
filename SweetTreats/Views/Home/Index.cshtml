@@ -3,6 +3,20 @@
 }
 
 <h1>Welcome to the Sweet Treats Street!</h1>
+
+@if (User.Identity.IsAuthenticated)
+{
+  <p>You are now logged in as: @User.Identity.Name!</p>
+
+      @using (Html.BeginForm("LogOff", "Account"))
+  {
+      <input type="submit" class="btn btn-danger" value="Log out" />
+      <p>@Html.ActionLink("Return to home", "Index")</p>
+  }
+}
+
+
+
 <p>@Html.ActionLink("See all treats", "Index", "Treats")</p>
 <p>@Html.ActionLink("See all flavors", "Index", "Flavors")</p>
 <p>@Html.ActionLink("Register a new account", "Register", "Account")</p>
