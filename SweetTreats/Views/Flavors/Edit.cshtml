@@ -1,0 +1,20 @@
+@{
+  Layout = "_Layout";
+}
+
+@model SweetTreats.Models.Flavors
+
+<h2>Edit</h2>
+
+<h4>Edit this flavor: @Html.DisplayFor(model => model.FlavorsDescription)</h4>
+
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(model => model.FlavorsId)
+
+    @Html.LabelFor(model => model.FlavorsDescription)
+    @Html.EditorFor(model => model.FlavorsDescription)
+
+    <input type="submit" value="Save" />
+}
+<p>@Html.ActionLink("Back to flavors", "Index")</p>
