@@ -14,6 +14,12 @@
   }
 }
 
+@if (!User.Identity.IsAuthenticated)
+{
+  <p>You are not logged in.</p>
+  <p>You may browse, but you must be registered and logged in to modify items on this website.</p>
+}
+
 <p>@Html.ActionLink("See all treats", "Index", "Treats")</p>
 <p>@Html.ActionLink("See all flavors", "Index", "Flavors")</p>
 <p>@Html.ActionLink("Register a new account", "Register", "Account")</p>
