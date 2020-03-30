@@ -29,12 +29,15 @@ Clone this repository via Terminal using the following commands:
 * ```$ git clone https://github.com/brandanpdx/sweet-treats```
 * ```$ cd sweet-treats```
 
-To run the program, navigate to the SweetTreats production folder by typing the following into the terminal: 
+To run the program, first navigate to the SweetTreats production folder by typing the following into the terminal: 
 
 * ```$ cd SweetTreats```
 
 Then restore dependencies by typing:
 * ```$ dotnet restore```
+
+Then update your MySQL database by typing: 
+* ```$ dotnef ef database update```
 
 You can now run the program by typing:
 * ```$ dotnet run```
