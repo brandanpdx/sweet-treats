@@ -10,6 +10,16 @@ This is the Epicodus independent end-of-week assignment for Friday, March 27, 20
 
 | Specification             | Input 	|     Output      |
 |-------------------------	|-------	|----------------	|
+|When user visits '/' root route, display splash page with link to '/treats' and '/flavors' | user visits '/' route | display home|
+| When user visits '/treats' display list of all treats, each with 'view detail' link, and 'add new treat' button | user visits '/treats' | display list of treats, and 'Add new treat' button|
+| When user clicks 'Add new treat' button, redirect to treat form | clicks 'add new treat' | redirect to '/treats/create'|
+| When user visits '/treats/create' show new treats form with field for "treat Name" and "treat Speciality" | user visits '/treats/create' | show treat form |
+| When user clicks submit on treat form, add new treat to List and redirect to '/treats' | clicks submit | Add new treat to List, redirect to '/treats' |
+| When user visits '/treats/{id}', they will see the details of the treat | user visits treat page | show treat info |
+| When user visits '/flavors' display list of all flavors, each with 'view detail' link, and 'add new flavor' button | user visits '/flavors' | display list of flavors, and 'Add new flavor' button|
+| When user clicks 'Add new flavor' button, redirect to flavor form | clicks 'add new flavor' | redirect to '/flavor/create'|
+| When user visits '/flavor/create' show new flavor form with field for "flavor Name" | user visits '/flavor/create' | show treat form |
+| When user clicks submit on flavor form, add new flavor to List and redirect to '/flavors' | clicks submit | Add new flavor to List, redirect to '/flavors' |
 
 
 ## Setup/Installation Requirements
