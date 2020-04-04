@@ -15,12 +15,12 @@
 else
 {
   <h4>Flavors the treats has:</h4>
-  <ul>
+  
   @foreach(var join in Model.Flavors)
   {
-    <li>@join.Flavors.FlavorsDescription</li>
+    <li>@join.Flavors.FlavorsDescription</li> <br>
   }
-  </ul>
+ 
 }
 
 <p>@Html.ActionLink("Back to treats", "Index")</p>

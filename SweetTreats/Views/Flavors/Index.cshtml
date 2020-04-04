@@ -5,6 +5,17 @@
 @using SweetTreats.Models;
 @model IEnumerable<SweetTreats.Models.Flavors>
 
+<div class="container">
+
+  <ul>
+<li>@Html.ActionLink("Home", "Index", "Home" )</li>
+<li>@Html.ActionLink("Treats", "Index", "Treats")</li>
+<li>@Html.ActionLink("Flavors", "Index", "Flavors")</li>
+<li>@Html.ActionLink("Register", "Register", "Account")</li>
+<li>@Html.ActionLink("Log in", "Login", "Account")</li>
+  </ul>
+
+
 <h1>Flavors!</h1>
 
 @if (Model.Any())
@@ -24,3 +35,5 @@ else
 <p>@Html.ActionLink("Add new flavor (Account Required)" , "Create")</p>
 
 <p>@Html.ActionLink("Home", "Index", "Home")</p>
+
+</div>

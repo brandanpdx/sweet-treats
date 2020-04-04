@@ -4,6 +4,14 @@
 
 @using System.Security.Claims
 
+  <ul>
+<li>@Html.ActionLink("Home", "Index", "Home" )</li>
+<li>@Html.ActionLink("Treats", "Index", "Treats")</li>
+<li>@Html.ActionLink("Flavors", "Index", "Flavors")</li>
+<li>@Html.ActionLink("Register", "Register", "Account")</li>
+<li>@Html.ActionLink("Log in", "Login", "Account")</li>
+  </ul>
+
 <h2>Authentication with Identity</h2>
 <hr />
 @if (User.Identity.IsAuthenticated)

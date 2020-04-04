@@ -5,6 +5,16 @@
 @using SweetTreats.ViewModels
 @model RegisterViewModel
 
+<div class="container">
+
+  <ul>
+<li>@Html.ActionLink("Home", "Index", "Home" )</li>
+<li>@Html.ActionLink("Treats", "Index", "Treats")</li>
+<li>@Html.ActionLink("Flavors", "Index", "Flavors")</li>
+<li>@Html.ActionLink("Register", "Register", "Account")</li>
+<li>@Html.ActionLink("Log in", "Login", "Account")</li>
+  </ul>
+
 <h2>Register a new user</h2>
 <hr />
 @using (Html.BeginForm("Register", "Account", FormMethod.Post))
@@ -20,3 +30,4 @@
 
     <input type="submit" value="Index" />
 }
+</div>

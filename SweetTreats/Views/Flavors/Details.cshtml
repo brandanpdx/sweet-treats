@@ -15,17 +15,18 @@
 else
 {
   <h4>Treats the flavor belongs to:</h4>
-  <ul>
+  
   @foreach(var join in Model.Treats)
   {
-    <li>@join.Treats.TreatsName</li>
+    <li>@join.Treats.TreatsName</li> <br>
+
     @using (Html.BeginForm("DeleteFlavor", "Flavors"))
     {
       @Html.Hidden("joinId", @join.TreatsFlavorsId)
       
     }
   }
-  </ul>
+
 }
 
 <p>@Html.ActionLink("Back to list", "Index")</p>

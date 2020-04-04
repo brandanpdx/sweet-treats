@@ -4,24 +4,35 @@
 
 @using SweetTreats.ViewModels;
 @model LoginViewModel;
-<div class="row">
-  <div class="col-md-6 offset-md-3">
-    <h2 class="text-center">Log in with your account</h2>
-    <h2 class="text-center">You must be logged in to create, edit, or delete items on this website.</h2>
-    <hr />
-    @using (Html.BeginForm())
-    {
-      <div class="form-group">
-        @Html.LabelFor(m => m.Email)
-        @Html.TextBoxFor(m => m.Email, new { @class="form-control"})
-      </div>
 
-      <div class="form-group">
-        @Html.LabelFor(m => m.Password)
-        @Html.PasswordFor(m => m.Password, new { @class="form-control"})
-      </div>
+<div class="container">
+    <ul>
+<li>@Html.ActionLink("Home", "Index", "Home" )</li>
+<li>@Html.ActionLink("Treats", "Index", "Treats")</li>
+<li>@Html.ActionLink("Flavors", "Index", "Flavors")</li>
+<li>@Html.ActionLink("Register", "Register", "Account")</li>
+<li>@Html.ActionLink("Log in", "Login", "Account")</li>
+  </ul>
+  
+  <div class="row">
+    <div class="col-md-6 offset-md-3">
+      <h2 class="text-center">Log in with your account</h2>
+      <h2 class="text-center">You must be logged in to create, edit, or delete items on this website.</h2>
+      <hr />
+      @using (Html.BeginForm())
+      {
+        <div class="form-group">
+          @Html.LabelFor(m => m.Email)
+          @Html.TextBoxFor(m => m.Email, new { @class="form-control"})
+        </div>
 
-        <input type="submit" value="Log in" class="btn btn-info btn-block" />
-    }
+        <div class="form-group">
+          @Html.LabelFor(m => m.Password)
+          @Html.PasswordFor(m => m.Password, new { @class="form-control"})
+        </div>
+
+          <input type="submit" value="Log in" class="btn btn-info btn-block" />
+      }
+    </div>
   </div>
 </div>
